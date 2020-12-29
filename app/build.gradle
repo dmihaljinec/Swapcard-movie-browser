@@ -1,0 +1,103 @@
+plugins {
+    id "com.android.application"
+    id "kotlin-android"
+    id "kotlin-kapt"
+    id "dagger.hilt.android.plugin"
+    id "com.apollographql.apollo" version "2.4.6"
+}
+
+android {
+    compileSdkVersion 30
+    defaultConfig {
+        applicationId "com.swapcard.apps.moviebrowser"
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+    buildFeatures {
+        dataBinding = true
+    }
+}
+
+configurations.all {
+    // androidx.test includes junit 4.12 so this will force that entire project uses same junit version
+    resolutionStrategy.force "junit:junit:${versions.junit}"
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
+
+    // Android UI and appcompat
+    implementation "androidx.appcompat:appcompat:${versions.appCompat}"
+    implementation "com.android.support.constraint:constraint-layout:${versions.constraintLayout}"
+    implementation "androidx.recyclerview:recyclerview:${versions.recyclerView}"
+    implementation "com.google.android.material:material:${versions.material}"
+    implementation "androidx.fragment:fragment-ktx:${versions.fragment}"
+
+    // ViewModel and LiveData
+    implementation "androidx.lifecycle:lifecycle-extensions:${versions.lifecycle}"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:${versions.lifecycle}"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.lifecycle}"
+
+    // Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutinesAndroidVersion}"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutinesAndroidVersion}"
+
+    // Room
+    implementation "androidx.room:room-ktx:${versions.room}"
+    kapt "androidx.room:room-compiler:${versions.room}"
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:${versions.retrofit}"
+    implementation "com.squareup.retrofit2:converter-gson:${versions.retrofitConverterGson}"
+
+    // Gson Json parser
+    implementation "com.google.code.gson:gson:${versions.gson}"
+
+    // Hilt (Dagger dependency injection)
+    implementation "com.google.dagger:hilt-android:${versions.hiltDagger}"
+    kapt "com.google.dagger:hilt-compiler:${versions.hiltDagger}"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:${versions.hilt}"
+    kapt "androidx.hilt:hilt-compiler:${versions.hilt}"
+
+    // Glide
+    implementation "com.github.bumptech.glide:glide:${versions.glide}"
+    kapt "com.github.bumptech.glide:compiler:${versions.glide}"
+
+    // Apollo
+    implementation "com.apollographql.apollo:apollo-runtime:${versions.apollo}"
+    implementation "com.apollographql.apollo:apollo-coroutines-support:${versions.apollo}"
+
+    // Paging
+    implementation "androidx.paging:paging-runtime:${versions.paging}"
+
+    // Timber logging library
+    implementation "com.jakewharton.timber:timber:${versions.timber}"
+
+    // JUnit
+    testImplementation "junit:junit:${versions.junit}"
+
+    // Android Instrumented test
+    androidTestImplementation "androidx.test:core:${versions.androidTest}"
+    androidTestImplementation "androidx.test:runner:${versions.androidTest}"
+}

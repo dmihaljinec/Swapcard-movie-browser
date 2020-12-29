@@ -1,0 +1,25 @@
+query PopularMovieList($pageSize: Int, $cursor: String) {
+  movies {
+    popular(first: $pageSize after: $cursor) {
+      pageInfo {
+        endCursor
+        hasNextPage
+      }
+      edges {
+        node {
+          details {
+            id
+            title
+            releaseDate
+            poster(size:W154)
+            genres {
+              id
+              name
+            }
+            rating
+          }
+        }
+      }
+    }
+  }
+}
