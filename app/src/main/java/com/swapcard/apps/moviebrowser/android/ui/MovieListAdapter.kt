@@ -1,7 +1,7 @@
 package com.swapcard.apps.moviebrowser.android.ui
 
 import android.view.ViewGroup
-import android.widget.Button
+import android.widget.ImageView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.swapcard.apps.moviebrowser.android.BR
@@ -27,7 +27,7 @@ class MovieListAdapter(private val movieLayoutId: Int) : ListAdapter<MovieViewMo
             clickListener?.run {
                 holder.itemView.setOnClickListener { this(item) }
             }
-            val favorites = holder.itemView.findViewById<Button>(R.id.favorite)
+            val favorites = holder.itemView.findViewById<ImageView>(R.id.favorite)
             favoritesClickListener?.run {
                 favorites?.setOnClickListener { this(item) }
             }

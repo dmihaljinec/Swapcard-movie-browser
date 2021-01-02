@@ -29,6 +29,13 @@ class MovieViewModel(val movie: Movie) {
         return "${movie.rating}"
     }
 
+    fun listItemFavoriteResId(): Int {
+        return when (movie.favorite) {
+            true -> R.drawable.favorite_tint_24
+            false -> R.drawable.not_favorite_tint_24
+        }
+    }
+
     // TODO: remove
     fun favorite(): String {
         return when (movie.favorite) {

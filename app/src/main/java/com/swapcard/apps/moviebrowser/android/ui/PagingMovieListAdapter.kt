@@ -1,7 +1,7 @@
 package com.swapcard.apps.moviebrowser.android.ui
 
 import android.view.ViewGroup
-import android.widget.Button
+import android.widget.ImageView
 import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
 import androidx.paging.PagingDataAdapter
@@ -30,7 +30,7 @@ class PagingMovieListAdapter : PagingDataAdapter<MovieViewModel, DataBindingView
             clickListener?.run {
                 holder.itemView.setOnClickListener { this(item) }
             }
-            val favorites = holder.itemView.findViewById<Button>(R.id.favorite)
+            val favorites = holder.itemView.findViewById<ImageView>(R.id.favorite)
             favoritesClickListener?.run {
                 favorites.setOnClickListener { this(item) }
             }
