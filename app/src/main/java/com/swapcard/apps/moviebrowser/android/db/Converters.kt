@@ -8,11 +8,13 @@ class Converters {
 
     @TypeConverter
     fun genresToString(genres: List<Genre>): String {
+        if (genres.isEmpty()) return ""
         return genres.joinToString(separator = ",") { genre -> genre.name }
     }
 
     @TypeConverter
     fun genresFromString(genres: String): List<Genre> {
+        if (genres.isEmpty()) return listOf()
         return genres.split(",").map { name -> Genre.valueOf(name) }
     }
 

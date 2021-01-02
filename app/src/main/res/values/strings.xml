@@ -3,6 +3,8 @@
     <string name="title_home">Movie Browser</string>
     <string name="title_popular">Popular</string>
     <string name="title_favorites">Favorites</string>
+    <string name="title_loading">Loading…</string>
+    <string name="title_retry">Retry</string>
     <string name="genre_action">Action</string>
     <string name="genre_adventure">Adventure</string>
     <string name="genre_animation">Animation</string>
@@ -22,4 +24,6 @@
     <string name="genre_tv_movie">TV Movie</string>
     <string name="genre_war">War</string>
     <string name="genre_western">Western</string>
+    <string name="description_favorite">Favorite movie button</string>
+    <string name="description_poster">Movie poster</string>
 </resources>

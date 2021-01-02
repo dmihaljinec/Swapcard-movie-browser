@@ -23,42 +23,54 @@
             android:layout_height="80dp"
             app:imageUrl="@{movie.movie}"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            android:contentDescription="@string/description_poster" />
 
         <TextView
             android:id="@+id/title"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:text="@{movie.listItemTitle()}"
             android:textSize="18sp"
             android:textColor="@color/colorDarkGrey"
+            android:gravity="start"
+            android:ellipsize="marquee"
+            android:maxLines="2"
             app:layout_constraintVertical_chainStyle="packed"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toTopOf="@id/subtitle1"
-            app:layout_constraintStart_toEndOf="@id/poster"/>
+            app:layout_constraintStart_toEndOf="@id/poster"
+            app:layout_constraintEnd_toStartOf="@id/favorite"/>
 
         <TextView
             android:id="@+id/subtitle1"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:text="@{movie.listItemSubtitle1(context)}"
             android:textSize="12sp"
+            android:gravity="start"
+            android:ellipsize="marquee"
+            android:singleLine="true"
             app:layout_constraintTop_toBottomOf="@id/title"
             app:layout_constraintBottom_toTopOf="@id/subtitle2"
-            app:layout_constraintStart_toEndOf="@id/poster"/>
+            app:layout_constraintStart_toEndOf="@id/poster"
+            app:layout_constraintEnd_toStartOf="@id/favorite"/>
 
         <TextView
             android:id="@+id/subtitle2"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:text="@{movie.listItemSubtitle2()}"
             android:textSize="12sp"
+            android:gravity="start"
+            android:maxLines="1"
             app:layout_constraintTop_toBottomOf="@id/subtitle1"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/poster"/>
+            app:layout_constraintStart_toEndOf="@id/poster"
+            app:layout_constraintEnd_toStartOf="@id/favorite"/>
 
         <ImageView
             android:id="@+id/favorite"
@@ -70,7 +82,8 @@
             app:tint="@color/colorAccent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            android:contentDescription="@string/description_favorite" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
