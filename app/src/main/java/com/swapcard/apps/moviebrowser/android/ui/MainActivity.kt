@@ -2,6 +2,7 @@ package com.swapcard.apps.moviebrowser.android.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
@@ -21,7 +22,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        setupToolbar()
         setupViewPager()
+    }
+
+    private fun setupToolbar() {
+        findViewById<Toolbar>(R.id.toolbar).setTitle(R.string.title_home)
     }
 
     private fun setupViewPager() {

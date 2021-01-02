@@ -11,24 +11,23 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
         android:theme="@style/ToolbarTheme" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/pager"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent" >
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_layout"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/colorPrimary"
-            android:elevation="4dp"
-            app:tabTextColor="@color/colorAccent"
-            app:tabSelectedTextColor="@color/colorWhite"
-            app:tabIndicatorColor="@color/colorWhite"
-            app:tabIndicatorHeight="4dp" />
+            android:paddingBottom="20dp"
+            app:tabTextColor="@color/colorDarkGrey"
+            app:tabSelectedTextColor="@color/colorAccent"
+            app:tabIndicatorColor="@color/colorAccent"
+            app:tabMode="scrollable"
+            app:tabIndicatorHeight="2dp" />
 
     </androidx.viewpager.widget.ViewPager>
 

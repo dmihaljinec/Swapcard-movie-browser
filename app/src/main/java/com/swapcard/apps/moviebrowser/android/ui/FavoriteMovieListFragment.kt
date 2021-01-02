@@ -16,8 +16,10 @@ import com.swapcard.apps.moviebrowser.android.ui.viewmodel.FavoriteMovieListFrag
 import com.swapcard.apps.moviebrowser.android.ui.viewmodel.MovieViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.collect
 
+@FlowPreview
 @ExperimentalCoroutinesApi
 @ExperimentalPagingApi
 @AndroidEntryPoint

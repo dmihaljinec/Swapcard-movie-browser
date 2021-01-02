@@ -3,16 +3,14 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
     <style name="ToolbarTheme">
         <!-- Color used for the title of the Toolbar - as long as not overridden -->
-        <item name="android:textColorPrimary">@color/colorWhite</item>
+        <item name="android:textColorPrimary">@color/colorDarkGrey</item>
         <!-- Used to color back button and three dots -->
-        <item name="android:textColorSecondary">@color/colorWhite</item>
+        <item name="android:textColorSecondary">@color/colorDarkGrey</item>
     </style>
 
 </resources>

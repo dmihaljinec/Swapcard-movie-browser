@@ -17,8 +17,10 @@ import com.swapcard.apps.moviebrowser.android.ui.viewmodel.MovieViewModel
 import com.swapcard.apps.moviebrowser.android.ui.viewmodel.PopularMovieListFragmentViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.collectLatest
 
+@FlowPreview
 @ExperimentalCoroutinesApi
 @ExperimentalPagingApi
 @AndroidEntryPoint

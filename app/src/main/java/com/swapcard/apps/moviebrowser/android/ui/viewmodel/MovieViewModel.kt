@@ -13,12 +13,20 @@ class MovieViewModel(val movie: Movie) {
     fun title(): String {
         return when (movie.release) {
             null -> movie.title
-            else -> "${movie.title} (${simpleDateFormat.format(movie.release)})"
+            else -> "${movie.title}  (${simpleDateFormat.format(movie.release)})"
         }
     }
 
-    fun genres(context: Context): String {
+    fun listItemTitle(): String {
+        return title()
+    }
+
+    fun listItemSubtitle1(context: Context): String {
         return movie.genres.joinToString { genre -> genre.toString(context) }
+    }
+
+    fun listItemSubtitle2(): String {
+        return "${movie.rating}"
     }
 
     // TODO: remove
