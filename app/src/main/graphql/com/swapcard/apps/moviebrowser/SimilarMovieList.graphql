@@ -1,0 +1,25 @@
+query SimilarMovieList($id: Int!) {
+  movies {
+    movie(id: $id) {
+      similar(first: 10) {
+        edges {
+          node {
+            details {
+              id
+              title
+              releaseDate
+              poster(size:W342)
+              genres {
+                id
+                name
+              }
+              rating
+              runtime
+              overview
+            }
+          }
+        }
+      }
+    }
+  }
+}

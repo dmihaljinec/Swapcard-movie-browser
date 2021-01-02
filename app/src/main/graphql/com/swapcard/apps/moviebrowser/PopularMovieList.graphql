@@ -11,12 +11,14 @@ query PopularMovieList($pageSize: Int, $cursor: String) {
             id
             title
             releaseDate
-            poster(size:W154)
+            poster(size:W342)
             genres {
               id
               name
             }
             rating
+            runtime
+            overview
           }
         }
       }

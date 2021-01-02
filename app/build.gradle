@@ -2,6 +2,7 @@ plugins {
     id "com.android.application"
     id "kotlin-android"
     id "kotlin-kapt"
+    id "kotlin-parcelize"
     id "dagger.hilt.android.plugin"
     id "com.apollographql.apollo" version "2.4.6"
 }
@@ -89,7 +90,7 @@ dependencies {
     implementation "com.apollographql.apollo:apollo-coroutines-support:${versions.apollo}"
 
     // Paging
-    implementation "androidx.paging:paging-runtime:${versions.paging}"
+    implementation "androidx.paging:paging-runtime-ktx:${versions.paging}"
 
     // Timber logging library
     implementation "com.jakewharton.timber:timber:${versions.timber}"

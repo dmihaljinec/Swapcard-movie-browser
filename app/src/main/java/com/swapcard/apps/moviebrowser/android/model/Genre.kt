@@ -1,6 +1,6 @@
 package com.swapcard.apps.moviebrowser.android.model
 
-enum class Genres {
+enum class Genre {
     ACTION,
     ADVENTURE,
     ANIMATION,

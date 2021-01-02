@@ -4,8 +4,8 @@
 
     <data>
         <variable
-            name="movie"
-            type="com.swapcard.apps.moviebrowser.android.ui.viewmodel.MovieViewModel" />
+            name="loadState"
+            type="com.swapcard.apps.moviebrowser.android.ui.viewmodel.LoadStateViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,31 +14,37 @@
         android:minHeight="60dp">
 
         <TextView
-            android:id="@+id/title"
+            android:id="@+id/loading"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{movie.title()}"
+            android:text="Loading..."
             android:gravity="center_vertical"
+            android:visibility="@{loadState.loadingVisibility()}"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
 
         <TextView
-            android:id="@+id/genres"
+            android:id="@+id/error"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{movie.genres(context)}"
+            android:text="@{loadState.errorMessage()}"
             android:gravity="center_vertical"
-            app:layout_constraintTop_toBottomOf="@id/title"
+            android:visibility="@{loadState.errorVisibility()}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"/>
 
         <Button
-            android:id="@+id/favorite"
+            android:id="@+id/retry"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:minWidth="80dp"
+            android:text="Retry"
+            android:visibility="@{loadState.errorVisibility()}"
+            android:onClick="@{() -> loadState.retry()}"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:text="@{movie.favorite()}"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
