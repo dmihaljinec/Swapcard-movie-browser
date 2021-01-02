@@ -5,6 +5,8 @@
     <string name="title_favorites">Favorites</string>
     <string name="title_loading">Loading…</string>
     <string name="title_retry">Retry</string>
+    <string name="title_overview">Overview</string>
+    <string name="title_similar_movies">Similar Movies</string>
     <string name="genre_action">Action</string>
     <string name="genre_adventure">Adventure</string>
     <string name="genre_animation">Animation</string>

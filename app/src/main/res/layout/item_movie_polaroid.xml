@@ -11,6 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground"
         android:padding="10dp">
 
         <ImageView
@@ -19,7 +20,8 @@
             android:layout_height="wrap_content"
             app:imageUrl="@{movie.movie}"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            app:layout_constraintStart_toStartOf="parent"
+            android:contentDescription="@string/description_poster" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

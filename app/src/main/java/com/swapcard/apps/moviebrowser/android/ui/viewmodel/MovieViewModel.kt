@@ -10,15 +10,13 @@ import java.util.*
 class MovieViewModel(val movie: Movie) {
     private val simpleDateFormat = SimpleDateFormat("yyyy", Locale.getDefault())
 
-    fun title(): String {
+    fun title(): String = movie.title
+
+    fun listItemTitle(): String {
         return when (movie.release) {
             null -> movie.title
             else -> "${movie.title}  (${simpleDateFormat.format(movie.release)})"
         }
-    }
-
-    fun listItemTitle(): String {
-        return title()
     }
 
     fun listItemSubtitle1(context: Context): String {
@@ -36,12 +34,17 @@ class MovieViewModel(val movie: Movie) {
         }
     }
 
-    // TODO: remove
-    fun favorite(): String {
-        return when (movie.favorite) {
-            true -> "Fav"
-            false -> "Not"
+    fun duration(): String {
+        val builder = StringBuilder()
+        val hours = movie.runtime / 60
+        val minutes = movie.runtime % 60
+        var prefix = ""
+        if (hours > 0) {
+            builder.append("${hours}h")
+            prefix = " "
         }
+        if (minutes > 0) builder.append("${prefix}${minutes}min")
+        return builder.toString()
     }
 }
 
