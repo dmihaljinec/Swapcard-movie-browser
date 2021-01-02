@@ -50,17 +50,16 @@ class MovieFragment : Fragment() {
         )
         binding.movieFragmentViewModel = movieFragmentViewModel
         binding.lifecycleOwner = viewLifecycleOwner
-        /*
         with(binding.toolbar) {
             activity.setSupportActionBar(this)
             activity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
             setNavigationOnClickListener { activity.finish() }
-            detailsFragmentViewModel.day.observe(viewLifecycleOwner) { dayViewModel ->
-                activity.supportActionBar?.title = dayViewModel.detailsTitle(activity)
+            movieFragmentViewModel.movie.observe(viewLifecycleOwner) { movieViewModel ->
+                activity.supportActionBar?.title = movieViewModel.title()
             }
         }
-        */
         binding.list.adapter = adapter
+        adapter.clickListener = movieClickListener(context)
         movieFragmentViewModel.similarMovies.observe(viewLifecycleOwner) { adapter.submitList(it) }
         return binding.root
     }

@@ -1,6 +1,5 @@
 package com.swapcard.apps.moviebrowser.android.ui
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +12,6 @@ import androidx.paging.ExperimentalPagingApi
 import com.swapcard.apps.moviebrowser.android.R
 import com.swapcard.apps.moviebrowser.android.databinding.FragmentMovieListBinding
 import com.swapcard.apps.moviebrowser.android.ui.viewmodel.FavoriteMovieListFragmentViewModel
-import com.swapcard.apps.moviebrowser.android.ui.viewmodel.MovieViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
@@ -26,15 +24,6 @@ import kotlinx.coroutines.flow.collect
 class FavoriteMovieListFragment : Fragment() {
     private val fragmentViewModel: FavoriteMovieListFragmentViewModel by viewModels()
     private val adapter = MovieListAdapter(R.layout.item_movie)
-    private val clickListener: (MovieViewModel) -> Unit = { movieViewModel ->
-        context?.run {
-            startActivity(
-                    Intent(this, MovieActivity::class.java)
-                            .apply {
-                                putExtra(MovieActivity.EXTRA_MOVIE, movieViewModel.movie)
-                            })
-        }
-    }
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -50,7 +39,7 @@ class FavoriteMovieListFragment : Fragment() {
         binding.list.adapter = adapter
         binding.list.removeAdapter(viewLifecycleOwner)
         binding.lifecycleOwner = viewLifecycleOwner
-        adapter.clickListener = clickListener
+        adapter.clickListener = movieClickListener(context)
         adapter.favoritesClickListener = { movieViewModel ->
             lifecycleScope.launchWhenResumed {
                 fragmentViewModel.toggleFavorite(movieViewModel.movie)
