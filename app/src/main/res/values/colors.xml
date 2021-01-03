@@ -3,8 +3,6 @@
     <color name="colorAccent">#00cc88</color>
 
     <color name="colorWhite">#FFFFFF</color>
-    <color name="colorBlack">#000000</color>
     <color name="colorDarkGrey">#666666</color>
-    <color name="colorLightGrey">#DDDDDD</color>
     <color name="colorRed">#CC1C1C</color>
 </resources>
