@@ -27,9 +27,11 @@ class GraphQLMovieDataSource(
         val favorites = favoriteMovieDataSource.getFavoriteMovies().first()
                 .map { favoriteMovie -> favoriteMovie.id }.toSet()
         return@withContext flow {
+            emit(SimilarMoviesLoadState.Loading)
+            val similarMovies: List<Movie>
             try {
-                emit(SimilarMoviesLoadState.Loading)
-                emit(SimilarMoviesLoadState.Loaded(apiService.similarMovies(movie, favorites)))
+                similarMovies = apiService.similarMovies(movie, favorites)
+                emit(SimilarMoviesLoadState.Loaded(similarMovies))
             } catch (e: Exception) {
                 emit(SimilarMoviesLoadState.Error(e))
             }

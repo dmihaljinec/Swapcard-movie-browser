@@ -18,6 +18,7 @@ buildscript {
         kotlin: '1.4.21',
         lifecycle: '2.2.0',
         material: '1.2.1',
+        mockk: '1.10.0',
         paging: '3.0.0-alpha11',
         recyclerView: '1.2.0-beta01',
         room: '2.2.6',

@@ -91,6 +91,9 @@ dependencies {
     // JUnit
     testImplementation "junit:junit:${versions.junit}"
 
+    // Mockk
+    testImplementation "io.mockk:mockk:${versions.mockk}"
+
     // Android Instrumented test
     androidTestImplementation "androidx.test:core:${versions.androidTest}"
     androidTestImplementation "androidx.test:runner:${versions.androidTest}"
