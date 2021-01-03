@@ -55,6 +55,7 @@ class MovieViewModel(val movie: Movie) {
             prefix = " "
         }
         if (minutes > 0) builder.append("${prefix}${minutes}${context.getString(R.string.abbr_minute)}")
+        if (hours == 0 && minutes == 0) builder.append(NOT_AVAILABLE)
         return builder.toString()
     }
 
