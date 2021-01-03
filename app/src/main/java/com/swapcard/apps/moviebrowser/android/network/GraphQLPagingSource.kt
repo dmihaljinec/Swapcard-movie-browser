@@ -37,7 +37,7 @@ class GraphQLPagingSource(
                 Timber.d("loading from network (${params.key}, ${params.loadSize}})")
                 with (apiService) {
                     val response = queryPopularMovies(params.key, params.loadSize)
-                    movies = popularMovies(response, favorites)
+                    movies = popularMovies(response, favorites).distinctBy { movie -> movie.id }
                     nextKey = nextKey(response)
                 }
                 updateCache(movies, nextKey)
@@ -57,7 +57,10 @@ class GraphQLPagingSource(
     }
 
     private fun updateCache(movies: List<Movie>, nextKey: String?) {
-        cache.movies.addAll(movies)
+        val cachedMovies = cache.movies
+        cachedMovies.addAll(movies)
+        cache.movies.clear()
+        cache.movies.addAll(cachedMovies.distinctBy { movie -> movie.id })
         cache.nextKey = nextKey
     }
 
