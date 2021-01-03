@@ -47,7 +47,6 @@ class GraphQLApiService(private val apolloClient: ApolloClient) {
         return response.data?.movies()?.popular()?.edges()?.mapNotNull { edge ->
             val details = edge?.node()?.details()
             details?.let {
-                Timber.d("WTF Director: ${crew(details, CREW_DIRECTOR)} ${details.id()}")
                 Movie(
                     details.id().toLong(),
                     details.title(),
