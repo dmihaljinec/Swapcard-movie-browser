@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.DiffUtil
 import com.swapcard.apps.moviebrowser.android.BR
 import com.swapcard.apps.moviebrowser.android.R
 import com.swapcard.apps.moviebrowser.android.ui.viewmodel.MovieViewModel
-import timber.log.Timber
 
 class PagingMovieListAdapter : PagingDataAdapter<MovieViewModel, DataBindingViewHolder>(diffCallback) {
     var clickListener: ((MovieViewModel) -> Unit)? = null
@@ -40,7 +39,6 @@ class PagingMovieListAdapter : PagingDataAdapter<MovieViewModel, DataBindingView
 
     fun withMovieLoadState(header: LoadStateAdapter<*>, footer: LoadStateAdapter<*>): ConcatAdapter {
         addLoadStateListener { loadStates ->
-            Timber.d("Refresh: ${loadStates.refresh}, Append: ${loadStates.append}, Prepend: ${loadStates.prepend}")
             header.loadState = if (this.itemCount == 0 && loadStates.refresh !is LoadState.NotLoading) {
                 loadStates.refresh
             } else {
