@@ -28,4 +28,4 @@ Author
 Damir Mihaljinec - @dmihaljinec on GitHub
 
 [1]: https://tmdb.apps.quintero.io/
-[2]: https://github.com/dmihaljinec/Swapcard-movie-browser/blob/master/app/src/main/java/com/swapcard/apps/moviebrowser/android/repository/SimilarMoviesLoadState.kt
+[2]: https://github.com/dmihaljinec/Swapcard-movie-browser/blob/master/app/src/main/java/com/swapcard/apps/moviebrowser/android/repository/MovieDataSource.kt
