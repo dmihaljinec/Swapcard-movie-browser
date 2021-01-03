@@ -13,7 +13,9 @@ import com.google.android.material.tabs.TabLayout
 import com.swapcard.apps.moviebrowser.android.R
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 
+@FlowPreview
 @ExperimentalCoroutinesApi
 @ExperimentalPagingApi
 @AndroidEntryPoint

@@ -68,13 +68,6 @@ dependencies {
     implementation "androidx.room:room-ktx:${versions.room}"
     kapt "androidx.room:room-compiler:${versions.room}"
 
-    // Retrofit
-    implementation "com.squareup.retrofit2:retrofit:${versions.retrofit}"
-    implementation "com.squareup.retrofit2:converter-gson:${versions.retrofitConverterGson}"
-
-    // Gson Json parser
-    implementation "com.google.code.gson:gson:${versions.gson}"
-
     // Hilt (Dagger dependency injection)
     implementation "com.google.dagger:hilt-android:${versions.hiltDagger}"
     kapt "com.google.dagger:hilt-compiler:${versions.hiltDagger}"
