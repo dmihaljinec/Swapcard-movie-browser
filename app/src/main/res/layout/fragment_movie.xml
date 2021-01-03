@@ -22,8 +22,8 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
+            android:paddingStart="@dimen/app_margin_half"
+            android:paddingEnd="@dimen/app_margin_half"
             android:scrollbars="none"
             app:layout_constraintTop_toBottomOf="@id/toolbar"
             app:layout_constraintBottom_toBottomOf="parent">
@@ -34,9 +34,9 @@
 
                 <ImageView
                     android:id="@+id/favorite"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:padding="10dp"
+                    android:layout_width="@dimen/favorite_size"
+                    android:layout_height="@dimen/favorite_size"
+                    android:padding="@dimen/app_margin_half"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:onClick="@{() -> movieFragmentViewModel.toggleFavorite()}"
                     app:imageResource="@{movieFragmentViewModel.movie.listItemFavoriteResId()}"
@@ -47,11 +47,10 @@
 
                 <TextView
                     android:id="@+id/genres"
+                    style="@style/Movie.Details.Content"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:text="@{movieFragmentViewModel.movie.genres(context)}"
-                    android:textColor="@color/colorDarkGrey"
-                    android:textSize="16sp"
                     android:gravity="start|center_vertical"
                     app:layout_constraintTop_toTopOf="@id/favorite"
                     app:layout_constraintBottom_toBottomOf="@id/favorite"
@@ -62,7 +61,7 @@
                     android:id="@+id/overview_frame"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="@dimen/app_margin"
                     android:orientation="horizontal"
                     app:layout_constraintTop_toBottomOf="@id/genres"
                     app:layout_constraintStart_toStartOf="parent">
@@ -78,13 +77,12 @@
 
                     <TextView
                         android:id="@+id/overview"
+                        style="@style/Movie.Details.Content"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="60"
-                        android:layout_marginStart="10dp"
-                        android:textSize="16sp"
-                        android:text="@{movieFragmentViewModel.movie.movie.overview}"
-                        android:textColor="@color/colorDarkGrey"/>
+                        android:layout_marginStart="@dimen/app_margin_half"
+                        android:text="@{movieFragmentViewModel.movie.movie.overview}"/>
 
                 </LinearLayout>
 
@@ -93,7 +91,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="@dimen/app_margin"
                     app:layout_constraintTop_toBottomOf="@id/overview_frame"
                     app:layout_constraintStart_toStartOf="parent"
                     android:baselineAligned="false">
@@ -101,78 +99,69 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.33"
+                        android:layout_weight="1"
                         android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/release_label"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            style="@style/Movie.Details.Label"
                             android:gravity="center"
-                            android:text="@string/title_release"
-                            android:textColor="@color/colorAccent"/>
+                            android:text="@string/title_release" />
 
                         <TextView
                             android:id="@+id/release"
+                            style="@style/Movie.Details.Content"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="@dimen/app_margin_half"
                             android:gravity="center"
-                            android:text="@{movieFragmentViewModel.movie.release(context)}"
-                            android:textColor="@color/colorDarkGrey"
-                            android:textSize="16sp"/>
+                            android:text="@{movieFragmentViewModel.movie.release(context)}"/>
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.33"
+                        android:layout_weight="1"
                         android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/rating_label"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            style="@style/Movie.Details.Label"
                             android:gravity="center"
-                            android:text="@string/title_rating"
-                            android:textColor="@color/colorAccent"/>
+                            android:text="@string/title_rating" />
 
                         <TextView
                             android:id="@+id/rating"
+                            style="@style/Movie.Details.Content"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="@dimen/app_margin_half"
                             android:gravity="center"
-                            android:text="@{movieFragmentViewModel.movie.rating()}"
-                            android:textColor="@color/colorDarkGrey"
-                            android:textSize="16sp"/>
+                            android:text="@{movieFragmentViewModel.movie.rating()}"/>
 
                     </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="0.33"
+                        android:layout_weight="1"
                         android:orientation="vertical">
 
                         <TextView
                             android:id="@+id/runtime_label"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            style="@style/Movie.Details.Label"
                             android:gravity="center"
-                            android:text="@string/title_runtime"
-                            android:textColor="@color/colorAccent"/>
+                            android:text="@string/title_runtime" />
 
                         <TextView
                             android:id="@+id/runtime"
+                            style="@style/Movie.Details.Content"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
+                            android:layout_marginTop="@dimen/app_margin_half"
                             android:gravity="center"
-                            android:text="@{movieFragmentViewModel.movie.runtime(context)}"
-                            android:textColor="@color/colorDarkGrey"
-                            android:textSize="16sp"/>
+                            android:text="@{movieFragmentViewModel.movie.runtime(context)}"/>
 
                     </LinearLayout>
 
@@ -180,55 +169,50 @@
 
                 <TextView
                     android:id="@+id/casts_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/Movie.Details.Label"
                     android:layout_marginTop="20dp"
                     android:text="@string/title_casts"
-                    android:textColor="@color/colorAccent"
+                    android:gravity="start"
                     app:layout_constraintTop_toBottomOf="@id/details_frame"
                     app:layout_constraintStart_toStartOf="parent"/>
 
                 <TextView
                     android:id="@+id/casts"
+                    style="@style/Movie.Details.Content"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginStart="10dp"
-                    android:textSize="16sp"
+                    android:layout_marginTop="@dimen/app_margin_half"
+                    android:layout_marginStart="@dimen/app_margin_half"
                     android:text="@{movieFragmentViewModel.movie.movie.casts}"
-                    android:textColor="@color/colorDarkGrey"
                     app:layout_constraintTop_toBottomOf="@id/casts_label"
                     app:layout_constraintStart_toStartOf="parent"/>
 
                 <TextView
                     android:id="@+id/director_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/Movie.Details.Label"
                     android:layout_marginTop="20dp"
                     android:text="@string/title_director"
-                    android:textColor="@color/colorAccent"
+                    android:gravity="start"
                     app:layout_constraintTop_toBottomOf="@id/casts"
                     app:layout_constraintStart_toStartOf="parent"/>
 
                 <TextView
                     android:id="@+id/director"
+                    style="@style/Movie.Details.Content"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginStart="10dp"
-                    android:textSize="16sp"
+                    android:layout_marginTop="@dimen/app_margin_half"
+                    android:layout_marginStart="@dimen/app_margin_half"
                     android:text="@{movieFragmentViewModel.movie.movie.director}"
-                    android:textColor="@color/colorDarkGrey"
                     app:layout_constraintTop_toBottomOf="@id/director_label"
                     app:layout_constraintStart_toStartOf="parent"/>
 
                 <TextView
                     android:id="@+id/similar_movies_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    style="@style/Movie.Details.Label"
+                    android:layout_marginTop="@dimen/app_margin"
                     android:text="@string/title_similar_movies"
-                    android:textColor="@color/colorAccent"
+                    android:gravity="start"
                     app:layout_constraintTop_toBottomOf="@id/director"
                     app:layout_constraintStart_toStartOf="parent"/>
 

@@ -12,11 +12,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="?android:attr/selectableItemBackground"
-        android:padding="10dp">
+        android:padding="@dimen/app_margin_half">
 
         <ImageView
             android:id="@+id/poster"
-            android:layout_width="100dp"
+            android:layout_width="@dimen/poster_width"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             app:imageUrl="@{movie.movie}"

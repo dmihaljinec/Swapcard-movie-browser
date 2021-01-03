@@ -13,4 +13,18 @@
         <item name="android:textColorSecondary">@color/colorDarkGrey</item>
     </style>
 
+    <style name="Movie.Details.Label" parent="Widget.AppCompat.TextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/colorAccent</item>
+        <item name="android:textSize">@dimen/text_small</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="Movie.Details.Content" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/colorDarkGrey</item>
+        <item name="android:textSize">@dimen/text_normal</item>
+    </style>
+
 </resources>

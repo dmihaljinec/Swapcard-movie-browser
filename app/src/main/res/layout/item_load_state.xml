@@ -11,16 +11,16 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp">
+        android:paddingStart="@dimen/app_margin"
+        android:paddingEnd="@dimen/app_margin">
 
         <TextView
             android:id="@+id/loading"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="@dimen/load_state_height"
             android:text="@string/title_loading"
             android:textColor="@color/colorAccent"
-            android:textSize="16sp"
+            android:textSize="@dimen/text_normal"
             android:gravity="center"
             android:visibility="@{loadState.loadingVisibility()}"
             app:layout_constraintTop_toTopOf="parent"
@@ -30,10 +30,10 @@
         <TextView
             android:id="@+id/empty"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="@dimen/load_state_height"
             android:text="@{loadState.emptyMessage(context)}"
             android:textColor="@color/colorDarkGrey"
-            android:textSize="16sp"
+            android:textSize="@dimen/text_normal"
             android:gravity="center"
             android:visibility="@{loadState.emptyVisibility()}"
             app:layout_constraintTop_toTopOf="parent"
@@ -43,10 +43,10 @@
         <TextView
             android:id="@+id/error"
             android:layout_width="0dp"
-            android:layout_height="100dp"
+            android:layout_height="@dimen/load_state_height"
             android:text="@{loadState.errorMessage(context)}"
             android:textColor="@color/colorRed"
-            android:textSize="16sp"
+            android:textSize="@dimen/text_normal"
             android:gravity="start|center_vertical"
             android:visibility="@{loadState.errorVisibility()}"
             app:layout_constraintTop_toTopOf="parent"
