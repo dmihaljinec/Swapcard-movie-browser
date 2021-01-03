@@ -33,6 +33,7 @@
     <string name="genre_western">Western</string>
     <string name="description_favorite">Favorite movie button</string>
     <string name="description_poster">Movie poster</string>
+    <string name="description_empty_similar_movies">Movies not found</string>
     <string name="abbr_hour">h</string>
     <string name="abbr_minute">min</string>
 </resources>

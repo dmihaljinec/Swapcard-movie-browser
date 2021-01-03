@@ -28,10 +28,23 @@
             app:layout_constraintStart_toStartOf="parent"/>
 
         <TextView
+            android:id="@+id/empty"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:text="@{loadState.emptyMessage(context)}"
+            android:textColor="@color/colorDarkGrey"
+            android:textSize="16sp"
+            android:gravity="center"
+            android:visibility="@{loadState.emptyVisibility()}"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
             android:id="@+id/error"
             android:layout_width="0dp"
             android:layout_height="100dp"
-            android:text="@{loadState.errorMessage()}"
+            android:text="@{loadState.errorMessage(context)}"
             android:textColor="@color/colorRed"
             android:textSize="16sp"
             android:gravity="start|center_vertical"
