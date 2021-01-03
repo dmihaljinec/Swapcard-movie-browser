@@ -8,7 +8,9 @@ import com.swapcard.apps.moviebrowser.android.BR
 import com.swapcard.apps.moviebrowser.android.R
 import com.swapcard.apps.moviebrowser.android.ui.viewmodel.MovieViewModel
 
-class MovieListAdapter(private val movieLayoutId: Int) : ListAdapter<MovieViewModel, DataBindingViewHolder>(diffCallback) {
+class MovieListAdapter(
+        private val movieLayoutId: Int
+) : ListAdapter<MovieViewModel, DataBindingViewHolder>(diffCallback) {
     var clickListener: ((MovieViewModel) -> Unit)? = null
     var favoritesClickListener: ((MovieViewModel) -> Unit)? = null
 

@@ -1,6 +1,7 @@
 package com.swapcard.apps.moviebrowser.android.ui.viewmodel
 
 import android.content.Context
+import android.text.format.DateFormat
 import com.swapcard.apps.moviebrowser.android.R
 import com.swapcard.apps.moviebrowser.android.model.Genre
 import com.swapcard.apps.moviebrowser.android.model.Movie
@@ -10,8 +11,6 @@ import java.util.*
 class MovieViewModel(val movie: Movie) {
     private val simpleDateFormat = SimpleDateFormat("yyyy", Locale.getDefault())
 
-    fun title(): String = movie.title
-
     fun listItemTitle(): String {
         return when (movie.release) {
             null -> movie.title
@@ -20,11 +19,11 @@ class MovieViewModel(val movie: Movie) {
     }
 
     fun listItemSubtitle1(context: Context): String {
-        return movie.genres.joinToString { genre -> genre.toString(context) }
+        return genres(context)
     }
 
     fun listItemSubtitle2(): String {
-        return "${movie.rating}"
+        return if (movie.rating > 0.0) "${movie.rating}" else ""
     }
 
     fun listItemFavoriteResId(): Int {
@@ -34,17 +33,37 @@ class MovieViewModel(val movie: Movie) {
         }
     }
 
-    fun duration(): String {
+    fun rating(): String {
+        return if (movie.rating > 0.0) "${movie.rating}" else NOT_AVAILABLE
+    }
+
+    fun release(context: Context): String {
+        val dateFormat = DateFormat.getMediumDateFormat(context)
+        movie.release?.let {
+            return dateFormat.format(movie.release)
+        }
+        return NOT_AVAILABLE
+    }
+
+    fun runtime(context: Context): String {
         val builder = StringBuilder()
         val hours = movie.runtime / 60
         val minutes = movie.runtime % 60
         var prefix = ""
         if (hours > 0) {
-            builder.append("${hours}h")
+            builder.append("${hours}${context.getString(R.string.abbr_hour)}")
             prefix = " "
         }
-        if (minutes > 0) builder.append("${prefix}${minutes}min")
+        if (minutes > 0) builder.append("${prefix}${minutes}${context.getString(R.string.abbr_minute)}")
         return builder.toString()
+    }
+
+    fun genres(context: Context): String {
+        return movie.genres.joinToString { genre -> genre.toString(context) }
+    }
+
+    companion object {
+        private const val NOT_AVAILABLE = "N/A"
     }
 }
 

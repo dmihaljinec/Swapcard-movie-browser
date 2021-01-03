@@ -17,8 +17,9 @@ data class MovieEntity(
         val runtime: Int,
         val genres: List<Genre>,
         val poster: String,
-        val overview: String
-
+        val overview: String,
+        val director: String,
+        val casts: String
 ) {
     constructor(movie: Movie) : this(
             movie.id,
@@ -28,7 +29,9 @@ data class MovieEntity(
             movie.runtime,
             movie.genres,
             movie.posterUrl,
-            movie.overview
+            movie.overview,
+            movie.director,
+            movie.casts
     )
 
     fun toMovie(): Movie {
@@ -41,7 +44,9 @@ data class MovieEntity(
                 genres,
                 poster,
                 true,
-                overview
+                overview,
+                director,
+                casts
         )
     }
 }

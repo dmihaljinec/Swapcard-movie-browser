@@ -16,6 +16,20 @@ query SimilarMovieList($id: Int!) {
               rating
               runtime
               overview
+              credits {
+                crew {
+                  job
+                  value {
+                    name
+                  }
+                }
+                cast {
+                  character
+                  value {
+                    name
+                  }
+                }
+              }
             }
           }
         }

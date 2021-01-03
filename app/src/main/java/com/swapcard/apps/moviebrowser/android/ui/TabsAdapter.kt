@@ -7,7 +7,9 @@ import androidx.fragment.app.FragmentPagerAdapter
 import androidx.paging.ExperimentalPagingApi
 import com.swapcard.apps.moviebrowser.android.R
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 
+@FlowPreview
 @ExperimentalCoroutinesApi
 @ExperimentalPagingApi
 class TabsAdapter(

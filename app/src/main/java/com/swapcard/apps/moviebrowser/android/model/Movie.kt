@@ -15,6 +15,8 @@ data class Movie(
         val posterUrl: String,
         val favorite: Boolean,
         val overview: String,
+        val director: String,
+        val casts: String
 ) : Parcelable {
 
     fun create(isFavorite: Boolean): Movie {
@@ -27,7 +29,9 @@ data class Movie(
                 genres,
                 posterUrl,
                 isFavorite,
-                overview
+                overview,
+                director,
+                casts
         )
     }
 }

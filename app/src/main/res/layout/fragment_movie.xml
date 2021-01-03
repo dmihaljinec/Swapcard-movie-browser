@@ -22,7 +22,6 @@
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:paddingTop="10dp"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:scrollbars="none"
@@ -33,46 +32,194 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/details_label"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="Details"
-                    android:textColor="@color/colorAccent"
-                    android:textSize="18sp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/poster"/>
-
                 <ImageView
-                    android:id="@+id/poster"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    app:imageUrl="@{movieFragmentViewModel.movie.movie}"
+                    android:id="@+id/favorite"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:padding="10dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:onClick="@{() -> movieFragmentViewModel.toggleFavorite()}"
+                    app:imageResource="@{movieFragmentViewModel.movie.listItemFavoriteResId()}"
+                    app:tint="@color/colorAccent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/details_label"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:contentDescription="@string/description_poster" />
+                    android:contentDescription="@string/description_favorite" />
 
                 <TextView
-                    android:id="@+id/overview_label"
+                    android:id="@+id/genres"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:text="@{movieFragmentViewModel.movie.genres(context)}"
+                    android:textColor="@color/colorDarkGrey"
+                    android:textSize="16sp"
+                    android:gravity="start|center_vertical"
+                    app:layout_constraintTop_toTopOf="@id/favorite"
+                    app:layout_constraintBottom_toBottomOf="@id/favorite"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/favorite"/>
+
+                <LinearLayout
+                    android:id="@+id/overview_frame"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@id/genres"
+                    app:layout_constraintStart_toStartOf="parent">
+
+                    <ImageView
+                        android:id="@+id/poster"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="40"
+                        android:adjustViewBounds="true"
+                        app:imageUrl="@{movieFragmentViewModel.movie.movie}"
+                        android:contentDescription="@string/description_poster" />
+
+                    <TextView
+                        android:id="@+id/overview"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="60"
+                        android:layout_marginStart="10dp"
+                        android:textSize="16sp"
+                        android:text="@{movieFragmentViewModel.movie.movie.overview}"
+                        android:textColor="@color/colorDarkGrey"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/details_frame"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintTop_toBottomOf="@id/overview_frame"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:baselineAligned="false">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.33"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/release_label"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/title_release"
+                            android:textColor="@color/colorAccent"/>
+
+                        <TextView
+                            android:id="@+id/release"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:gravity="center"
+                            android:text="@{movieFragmentViewModel.movie.release(context)}"
+                            android:textColor="@color/colorDarkGrey"
+                            android:textSize="16sp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.33"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/rating_label"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/title_rating"
+                            android:textColor="@color/colorAccent"/>
+
+                        <TextView
+                            android:id="@+id/rating"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:gravity="center"
+                            android:text="@{movieFragmentViewModel.movie.rating()}"
+                            android:textColor="@color/colorDarkGrey"
+                            android:textSize="16sp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.33"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/runtime_label"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/title_runtime"
+                            android:textColor="@color/colorAccent"/>
+
+                        <TextView
+                            android:id="@+id/runtime"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:gravity="center"
+                            android:text="@{movieFragmentViewModel.movie.runtime(context)}"
+                            android:textColor="@color/colorDarkGrey"
+                            android:textSize="16sp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/casts_label"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="@string/title_overview"
+                    android:text="@string/title_casts"
                     android:textColor="@color/colorAccent"
-                    android:textSize="18sp"
-                    app:layout_constraintTop_toBottomOf="@id/poster"
+                    app:layout_constraintTop_toBottomOf="@id/details_frame"
                     app:layout_constraintStart_toStartOf="parent"/>
 
                 <TextView
-                    android:id="@+id/overview"
+                    android:id="@+id/casts"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginStart="10dp"
-                    android:text="@{movieFragmentViewModel.movie.movie.overview}"
-                    app:layout_constraintTop_toBottomOf="@id/overview_label"
+                    android:textSize="16sp"
+                    android:text="@{movieFragmentViewModel.movie.movie.casts}"
+                    android:textColor="@color/colorDarkGrey"
+                    app:layout_constraintTop_toBottomOf="@id/casts_label"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <TextView
+                    android:id="@+id/director_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/title_director"
+                    android:textColor="@color/colorAccent"
+                    app:layout_constraintTop_toBottomOf="@id/casts"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <TextView
+                    android:id="@+id/director"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp"
+                    android:textSize="16sp"
+                    android:text="@{movieFragmentViewModel.movie.movie.director}"
+                    android:textColor="@color/colorDarkGrey"
+                    app:layout_constraintTop_toBottomOf="@id/director_label"
                     app:layout_constraintStart_toStartOf="parent"/>
 
                 <TextView
@@ -82,8 +229,7 @@
                     android:layout_marginTop="20dp"
                     android:text="@string/title_similar_movies"
                     android:textColor="@color/colorAccent"
-                    android:textSize="18sp"
-                    app:layout_constraintTop_toBottomOf="@id/overview"
+                    app:layout_constraintTop_toBottomOf="@id/director"
                     app:layout_constraintStart_toStartOf="parent"/>
 
                 <androidx.recyclerview.widget.RecyclerView

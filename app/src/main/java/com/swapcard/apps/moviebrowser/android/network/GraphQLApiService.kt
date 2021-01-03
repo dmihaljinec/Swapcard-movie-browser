@@ -17,6 +17,7 @@ import timber.log.Timber
 import java.text.SimpleDateFormat
 import java.util.*
 
+@Suppress("SameParameterValue")
 class GraphQLApiService(private val apolloClient: ApolloClient) {
     private val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.US)
 
@@ -46,6 +47,7 @@ class GraphQLApiService(private val apolloClient: ApolloClient) {
         return response.data?.movies()?.popular()?.edges()?.mapNotNull { edge ->
             val details = edge?.node()?.details()
             details?.let {
+                Timber.d("WTF Director: ${crew(details, CREW_DIRECTOR)} ${details.id()}")
                 Movie(
                     details.id().toLong(),
                     details.title(),
@@ -55,7 +57,9 @@ class GraphQLApiService(private val apolloClient: ApolloClient) {
                     genres(details),
                     details.poster().toString(),
                     favorites.contains(details.id().toLong()),
-                    details.overview()
+                    details.overview(),
+                    crew(details, CREW_DIRECTOR),
+                    casts(details)
                 )
             }
         } ?: listOf()
@@ -78,19 +82,28 @@ class GraphQLApiService(private val apolloClient: ApolloClient) {
         return@withContext response.data?.movies()?.movie()?.similar()?.edges()?.mapNotNull { edge ->
             val details = edge?.node()?.details()
             details?.let {
-                Movie(
-                    details.id().toLong(),
-                    details.title(),
-                    releaseDate(details.releaseDate()),
-                    details.rating(),
-                    details.runtime(),
-                    genres(details),
-                    details.poster().toString(),
-                    favorites.contains(details.id().toLong()),
-                    details.overview()
-                )
+                val poster = details.poster()
+                if (poster != null) {
+                    Movie(
+                            details.id().toLong(),
+                            details.title(),
+                            releaseDate(details.releaseDate()),
+                            details.rating(),
+                            details.runtime(),
+                            genres(details),
+                            details.poster().toString(),
+                            favorites.contains(details.id().toLong()),
+                            details.overview(),
+                            crew(details, CREW_DIRECTOR),
+                            casts(details)
+                    )
+                } else {
+                    // Similar movies are presented with poster image only, if movie does not have
+                    // poster image we'll skip it
+                    null
+                }
             }
-        } ?: listOf() // TODO probably better to throw exception
+        } ?: listOf()
     }
 
     suspend fun getMovie(
@@ -112,8 +125,10 @@ class GraphQLApiService(private val apolloClient: ApolloClient) {
                     genres(details),
                     details.poster().toString(),
                     favorites.contains(details.id().toLong()),
-                    details.overview())
-                )
+                    details.overview(),
+                    crew(details, CREW_DIRECTOR),
+                    casts(details)
+                ))
             }
         }
     }
@@ -132,6 +147,33 @@ class GraphQLApiService(private val apolloClient: ApolloClient) {
 
     fun genres(details: MovieQuery.Details): List<Genre> {
         return details.genres().mapNotNull { genre -> genre.id().toGenre(genre.name()) }
+    }
+
+    private fun crew(details: PopularMovieListQuery.Details, job: String): String {
+        return details.credits().crew().firstOrNull { crew -> crew.job() == job }
+                ?.value()?.name() ?: NOT_AVAILABLE
+    }
+
+    private fun crew(details: SimilarMovieListQuery.Details, job: String): String {
+        return details.credits().crew().firstOrNull { crew -> crew.job() == job }?.value()
+                ?.name() ?: NOT_AVAILABLE
+    }
+
+    private fun crew(details: MovieQuery.Details, job: String): String {
+        return details.credits().crew().firstOrNull { crew -> crew.job() == job }?.value()
+                ?.name() ?: NOT_AVAILABLE
+    }
+
+    private fun casts(details: PopularMovieListQuery.Details): String {
+        return details.credits().cast().take(3).mapNotNull { cast -> cast.value().name() }.joinToString(", ")
+    }
+
+    private fun casts(details: SimilarMovieListQuery.Details): String {
+        return details.credits().cast().take(3).mapNotNull { cast -> cast.value().name() }.joinToString(", ")
+    }
+
+    private fun casts(details: MovieQuery.Details): String {
+        return details.credits().cast().take(3).mapNotNull { cast -> cast.value().name() }.joinToString(", ")
     }
 
     private fun releaseDate(date: Any?): Date? {
@@ -167,5 +209,10 @@ class GraphQLApiService(private val apolloClient: ApolloClient) {
                 null
             }
         }
+    }
+
+    companion object {
+        private const val CREW_DIRECTOR = "Director"
+        private const val NOT_AVAILABLE = "N/A"
     }
 }

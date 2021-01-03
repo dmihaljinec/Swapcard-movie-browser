@@ -4,6 +4,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import com.swapcard.apps.moviebrowser.android.model.Movie
+import com.swapcard.apps.moviebrowser.android.network.GraphQLPagingSource.InvalidationReason
 import com.swapcard.apps.moviebrowser.android.repository.FavoriteMovieDataSource
 import com.swapcard.apps.moviebrowser.android.repository.PagingMovieDataSource
 import com.swapcard.apps.moviebrowser.android.repository.PagingMovieDataSource.Companion.PAGE_SIZE
@@ -22,7 +23,7 @@ class GraphQLPagingMovieDataSource @Inject constructor(
     private val favoriteMovieDataSource: FavoriteMovieDataSource
 ) : PagingMovieDataSource {
     private var pagingSource: GraphQLPagingSource? = null
-    private var invalidationReason: GraphQLPagingSource.InvalidationReason = GraphQLPagingSource.InvalidationReason.UNKNOWN
+    private var invalidationReason: InvalidationReason = InvalidationReason.UNKNOWN
 
     override suspend fun getPopularMovies(): Flow<PagingData<Movie>> = withContext(Dispatchers.IO) {
         val cache = GraphQLPagingSource.PagingMovieCache(mutableListOf(), null)
@@ -41,7 +42,7 @@ class GraphQLPagingMovieDataSource @Inject constructor(
                         invalidationReason
                     ).also {
                         pagingSource = it
-                        invalidationReason = GraphQLPagingSource.InvalidationReason.UNKNOWN
+                        invalidationReason = InvalidationReason.UNKNOWN
                     }
                 }
             ).flow
@@ -59,7 +60,7 @@ class GraphQLPagingMovieDataSource @Inject constructor(
     }
 
     override fun retryNextPage() {
-        invalidationReason = GraphQLPagingSource.InvalidationReason.RETRY_AFTER_ERROR
+        invalidationReason = InvalidationReason.RETRY_AFTER_ERROR
         pagingSource?.invalidate()
     }
 }

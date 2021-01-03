@@ -55,7 +55,7 @@ class MovieFragment : Fragment() {
             activity.supportActionBar?.setDisplayHomeAsUpEnabled(true)
             setNavigationOnClickListener { activity.finish() }
             movieFragmentViewModel.movie.observe(viewLifecycleOwner) { movieViewModel ->
-                activity.supportActionBar?.title = movieViewModel.title()
+                activity.supportActionBar?.title = movieViewModel.movie.title
             }
         }
         binding.list.adapter = adapter

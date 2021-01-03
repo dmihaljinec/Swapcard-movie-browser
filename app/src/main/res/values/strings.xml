@@ -6,6 +6,11 @@
     <string name="title_loading">Loading…</string>
     <string name="title_retry">Retry</string>
     <string name="title_overview">Overview</string>
+    <string name="title_casts">Casts</string>
+    <string name="title_director">Director</string>
+    <string name="title_rating">Rating</string>
+    <string name="title_release">Release</string>
+    <string name="title_runtime">Runtime</string>
     <string name="title_similar_movies">Similar Movies</string>
     <string name="genre_action">Action</string>
     <string name="genre_adventure">Adventure</string>
@@ -28,4 +33,6 @@
     <string name="genre_western">Western</string>
     <string name="description_favorite">Favorite movie button</string>
     <string name="description_poster">Movie poster</string>
+    <string name="abbr_hour">h</string>
+    <string name="abbr_minute">min</string>
 </resources>

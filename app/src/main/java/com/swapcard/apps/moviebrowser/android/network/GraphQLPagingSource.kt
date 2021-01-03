@@ -25,6 +25,9 @@ class GraphQLPagingSource(
         return@withContext try {
             val movies: List<Movie>
             val nextKey: String?
+            // When movies are requested for the first time and we have some in cache, we'll provide them
+            // Only exception is when user requested to download more movies after previous try
+            // ended with error
             if (params.key == null && cache.movies.size > 0 && invalidationReason == InvalidationReason.UNKNOWN) {
                 Timber.d("loading from cache (${cache.movies.size})")
                 movies = cache.movies
