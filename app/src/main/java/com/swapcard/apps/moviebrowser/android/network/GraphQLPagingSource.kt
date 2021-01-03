@@ -57,7 +57,7 @@ class GraphQLPagingSource(
     }
 
     private fun updateCache(movies: List<Movie>, nextKey: String?) {
-        val cachedMovies = cache.movies
+        val cachedMovies = cache.movies.toMutableList()
         cachedMovies.addAll(movies)
         cache.movies.clear()
         cache.movies.addAll(cachedMovies.distinctBy { movie -> movie.id })
