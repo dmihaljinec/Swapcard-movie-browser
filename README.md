@@ -27,9 +27,14 @@ Author
 ------
 Damir Mihaljinec - @dmihaljinec on GitHub
 
+License
+-------
+Apache License, Version 2.0. See the [LICENSE][7] file for details.
+
 [1]: https://tmdb.apps.quintero.io/
 [2]: https://github.com/dmihaljinec/Swapcard-movie-browser/blob/master/app/src/main/java/com/swapcard/apps/moviebrowser/android/db/RoomFavoriteMovieDataSource.kt
 [3]: https://github.com/dmihaljinec/Swapcard-movie-browser/blob/master/app/src/main/java/com/swapcard/apps/moviebrowser/android/network/GraphQLMovieDataSource.kt
 [4]: https://github.com/dmihaljinec/Swapcard-movie-browser/blob/master/app/src/main/java/com/swapcard/apps/moviebrowser/android/network/GraphQLPagingMovieDataSource.kt
 [5]: https://github.com/dmihaljinec/Swapcard-movie-browser/blob/master/app/src/main/java/com/swapcard/apps/moviebrowser/android/network/GraphQLPagingSource.kt
 [6]: https://github.com/dmihaljinec/Swapcard-movie-browser/blob/master/app/src/main/java/com/swapcard/apps/moviebrowser/android/repository/MovieDataSource.kt
+[7]: https://github.com/dmihaljinec/Swapcard-movie-browser/blob/master/LICENSE
